@@ -1,0 +1,755 @@
+[
+  {
+    "id": "ZARA-M-KNIT-001",
+    "sequence_id": 1,
+    "file_name": "product (9).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/5786113082663928135_0",
+    "product_name": "Fine-Gauge Textured Knit Sweater",
+    "brand": "ZARA",
+    "price": { "amount": 49.9, "currency": "USD" },
+    "category": "Apparel & Accessories",
+    "inventory": {
+      "available_sizes": ["S", "M", "L", "XL"],
+      "available_colors": ["Charcoal", "Olive Green"],
+      "stock_quantity": 45
+    },
+    "details": {
+      "subject": "Close-up portrait of a male model with locs",
+      "top": "Dark charcoal/olive green fine-gauge knit sweater with a ribbed crew neck",
+      "accessories": "Black rectangular thick-frame sunglasses and metallic hair beads",
+      "composition": "80% Cotton, 20% Nylon"
+    }
+  },
+  {
+    "id": "ZARA-M-SWT-002",
+    "sequence_id": 2,
+    "file_name": "product (7).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/3877052410005909878_0",
+    "product_name": "Minimalist Text Sweatshirt",
+    "brand": "ZARA",
+    "price": { "amount": 39.9, "currency": "USD" },
+    "category": "Full Outfit",
+    "inventory": {
+      "available_sizes": ["S", "M", "L", "XL", "XXL"],
+      "available_colors": ["Ecru", "Black"],
+      "stock_quantity": 120
+    },
+    "details": {
+      "top": "Off-white crewneck sweatshirt with minimalist chest text",
+      "bottom": "Medium-wash blue straight-leg denim jeans",
+      "fit": "Oversized fit",
+      "care_instructions": "Machine wash cold, tumble dry low"
+    }
+  },
+  {
+    "id": "ZARA-W-HEEL-003",
+    "sequence_id": 3,
+    "file_name": "product (10).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/11945570138107843586_0",
+    "product_name": "Textured Fabric Stiletto Mules",
+    "brand": "ZARA",
+    "price": { "amount": 69.9, "currency": "USD" },
+    "category": "Footwear",
+    "inventory": {
+      "available_sizes": ["36", "37", "38", "39", "40", "41"],
+      "available_colors": ["Oatmeal"],
+      "stock_quantity": 18
+    },
+    "details": {
+      "style": "Pointed-toe mule seen from the rear",
+      "heel_height": "10 cm / 3.9 inches",
+      "material": "Textured oatmeal-colored fabric upper",
+      "features": "Airfit® flexible technical latex foam insole"
+    }
+  },
+  {
+    "id": "ZARA-U-HIGH-004",
+    "sequence_id": 4,
+    "file_name": "product (4).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/11408560960288865147_0",
+    "product_name": "Structured Funnel Neck Top",
+    "brand": "ZARA",
+    "price": { "amount": 45.9, "currency": "USD" },
+    "category": "Apparel",
+    "inventory": {
+      "available_sizes": ["XS", "S", "M", "L"],
+      "available_colors": ["Ecru"],
+      "stock_quantity": 32
+    },
+    "details": {
+      "style": "High-neck structured sweatshirt (back view)",
+      "fabric": "Technical Scuba Jersey",
+      "features": "Dropped shoulder, soft touch, moisture-wicking"
+    }
+  },
+  {
+    "id": "ZARA-W-SHRT-005",
+    "sequence_id": 5,
+    "file_name": "product (5).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/10188015664177254869_0",
+    "product_name": "Slim Fit Stretch Shirt",
+    "brand": "ZARA",
+    "price": { "amount": 35.9, "currency": "USD" },
+    "category": "Apparel",
+    "inventory": {
+      "available_sizes": ["XS", "S", "M", "L", "XL"],
+      "available_colors": ["Espresso Brown", "White", "Navy"],
+      "stock_quantity": 60
+    },
+    "details": {
+      "top": "Dark brown slim-fit long-sleeved button-down shirt",
+      "fit": "Body-con / Slim fit",
+      "elasticity": "High stretch"
+    }
+  },
+  {
+    "id": "ZARA-M-COMB-006",
+    "sequence_id": 6,
+    "file_name": "product (2).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/16979811981844094417_0",
+    "product_name": "Ribbed Knit & Chino Shorts Set",
+    "brand": "ZARA",
+    "price": { "amount": 85.0, "currency": "USD" },
+    "category": "Apparel",
+    "inventory": {
+      "available_sizes": ["M", "L", "XL"],
+      "available_colors": ["Black/Tan"],
+      "stock_quantity": 15
+    },
+    "details": {
+      "view": "Lower body rear view",
+      "top_material": "Heavyweight Cotton Rib",
+      "bottom_material": "Twill Cotton",
+      "accessories_included": "Ribbed mid-calf socks"
+    }
+  },
+  {
+    "id": "ZARA-FAB-007",
+    "sequence_id": 7,
+    "file_name": "product (3).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/14088681934180817816_0",
+    "product_name": "Soft Marl Knit Crew",
+    "brand": "ZARA",
+    "price": { "amount": 29.9, "currency": "USD" },
+    "category": "Apparel",
+    "inventory": {
+      "available_sizes": ["S", "M", "L"],
+      "available_colors": ["Marl Grey"],
+      "stock_quantity": 88
+    },
+    "details": {
+      "view": "Fabric Detail",
+      "material": "Heathered Grey Yarn",
+      "weight": "Lightweight"
+    }
+  },
+  {
+    "id": "ZARA-W-COAT-008",
+    "sequence_id": 8,
+    "file_name": "product (8).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/17707624338489173652_0",
+    "product_name": "Wool Blend Coat with Faux Fur Collar",
+    "brand": "ZARA",
+    "price": { "amount": 129.0, "currency": "USD" },
+    "category": "Outerwear",
+    "inventory": {
+      "available_sizes": ["S", "M", "L"],
+      "available_colors": ["Camel"],
+      "stock_quantity": 10
+    },
+    "details": {
+      "style": "Short Wool Coat",
+      "lining": "100% Polyester",
+      "features": "Removable faux-fur collar, button fastening"
+    }
+  },
+  {
+    "id": "ZARA-W-SLNG-009",
+    "sequence_id": 9,
+    "file_name": "product (6).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/11684127563609913242_0",
+    "product_name": "Triple Strap Patent Slingbacks",
+    "brand": "ZARA",
+    "price": { "amount": 59.9, "currency": "USD" },
+    "category": "Footwear",
+    "inventory": {
+      "available_sizes": ["35", "36", "37", "38", "39", "40"],
+      "available_colors": ["Ivory"],
+      "stock_quantity": 25
+    },
+    "details": {
+      "finish": "Patent leather effect",
+      "closure": "Adjustable buckles",
+      "toe": "Pointed"
+    }
+  },
+  {
+    "id": "ZARA-M-BOOT-010",
+    "sequence_id": 10,
+    "file_name": "product (1).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/11759130325858736443_0",
+    "product_name": "Brushed Suede Chelsea Boot",
+    "brand": "ZARA",
+    "price": { "amount": 89.9, "currency": "USD" },
+    "category": "Footwear",
+    "inventory": {
+      "available_sizes": ["40", "41", "42", "43", "44", "45"],
+      "available_colors": ["Dark Brown"],
+      "stock_quantity": 12
+    },
+    "details": {
+      "material": "100% Cow Suede",
+      "sole": "Rubber lug sole for grip",
+      "toe": "Rounded"
+    }
+  },
+  {
+    "id": "ZARA-M-BOOT-011",
+    "sequence_id": 11,
+    "file_name": "product (1).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/3517600738111731244",
+    "product_name": "Brushed Suede Heritage Boot",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 99.9,
+      "original_price": 129.0,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "5504/202/040",
+      "variants": [
+        {
+          "color": "Dark Brown",
+          "sizes": ["40", "41", "42", "43", "44", "45"],
+          "hex": "#3E2723"
+        }
+      ],
+      "stock_level": "Low Stock"
+    },
+    "details": {
+      "material": "100% Cow leather suede",
+      "sole": "Contrast track sole",
+      "closure": "Lace-up",
+      "description": "Premium suede boots with a rounded toe and reinforced welt."
+    }
+  },
+  {
+    "id": "ZARA-M-SET-012",
+    "sequence_id": 12,
+    "file_name": "product (2).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/2996346990313673847",
+    "product_name": "Ribbed Knit Lifestyle Set",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 75.0,
+      "original_price": 75.0,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "3321/105/800",
+      "variants": [
+        {
+          "color": "Black/Sand",
+          "sizes": ["S", "M", "L", "XL"],
+          "hex": "#000000"
+        }
+      ],
+      "stock_level": "In Stock"
+    },
+    "details": {
+      "top": "Heavyweight ribbed cotton sweater",
+      "bottom": "Chino style shorts with rolled hem",
+      "styling_note": "Includes cream-toned ribbed mid-calf socks."
+    }
+  },
+  {
+    "id": "ZARA-FAB-013",
+    "sequence_id": 13,
+    "file_name": "product (3).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/15982412116486009921",
+    "product_name": "Premium Marl Cotton Tee",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 25.9,
+      "original_price": 25.9,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "0452/401/250",
+      "variants": [
+        {
+          "color": "Grey Marl",
+          "sizes": ["XS", "S", "M", "L", "XL"],
+          "hex": "#BDBDBD"
+        }
+      ],
+      "stock_level": "High Stock"
+    },
+    "details": {
+      "material": "Cotton-blend jersey",
+      "texture": "Heathered/Marl finish",
+      "neckline": "Reinforced ribbed crew neck"
+    }
+  },
+  {
+    "id": "ZARA-U-SWT-014",
+    "sequence_id": 14,
+    "file_name": "product (4).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/13398583991482568356",
+    "product_name": "Oversized Mock-Neck Sweatshirt",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 49.9,
+      "original_price": 49.9,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "1108/300/010",
+      "variants": [
+        { "color": "Ecru", "sizes": ["S-M", "L-XL"], "hex": "#F5F5DC" }
+      ],
+      "stock_level": "In Stock"
+    },
+    "details": {
+      "fit": "Extreme oversized",
+      "features": "Dropped shoulders, high funnel neck, seamless hem look"
+    }
+  },
+  {
+    "id": "ZARA-W-DENIM-015",
+    "sequence_id": 15,
+    "file_name": "product (5).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/14088180938487459727",
+    "product_name": "Stretch Poplin Shirt & Slim Denim",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 89.8,
+      "original_price": 110.0,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "BUNDLE-015",
+      "variants": [
+        {
+          "color": "Espresso/Indigo",
+          "sizes": ["34", "36", "38", "40"],
+          "hex": "#3E2723"
+        }
+      ],
+      "stock_level": "In Stock"
+    },
+    "details": {
+      "shirt": "Slim-fit chocolate brown poplin",
+      "denim": "High-rise indigo with gold stitching",
+      "elasticity": "Mid-stretch fabric"
+    }
+  },
+  {
+    "id": "ZARA-W-SHOE-016",
+    "sequence_id": 16,
+    "file_name": "product (6).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/4460481174432418163",
+    "product_name": "Triple-Strap Patent Slingbacks",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 69.9,
+      "original_price": 69.9,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "2210/101/001",
+      "variants": [
+        {
+          "color": "Ivory",
+          "sizes": ["36", "37", "38", "39", "40", "41"],
+          "hex": "#FFFFF0"
+        }
+      ],
+      "stock_level": "Limited Edition"
+    },
+    "details": {
+      "finish": "High-shine patent",
+      "hardware": "Miniature silver-toned buckles",
+      "toe_shape": "Sharp pointed toe"
+    }
+  },
+  {
+    "id": "ZARA-M-OUTFIT-017",
+    "sequence_id": 17,
+    "file_name": "product (7).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/6300469382045183800",
+    "product_name": "Urban Minimalist Full Set",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 145.0,
+      "original_price": 145.0,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "STREET-99-B",
+      "variants": [
+        { "color": "Ecru/Blue", "sizes": ["M", "L", "XL"], "hex": "#FDF5E6" }
+      ],
+      "stock_level": "In Stock"
+    },
+    "details": {
+      "includes": ["Graphic Sweatshirt", "Straight Denim", "Leather Tote Bag"],
+      "aesthetic": "Clean-cut metropolitan"
+    }
+  },
+  {
+    "id": "ZARA-W-COAT-018",
+    "sequence_id": 18,
+    "file_name": "product (8).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/2348920127346305128",
+    "product_name": "Short Fur-Collar Wool Coat",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 129.0,
+      "original_price": 159.0,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "8073/221/704",
+      "variants": [
+        { "color": "Camel", "sizes": ["XS", "S", "M", "L"], "hex": "#C19A6B" }
+      ],
+      "stock_level": "Low Stock"
+    },
+    "details": {
+      "composition": "Manteco wool blend",
+      "features": "Detachable faux-fur collar, tortoise shell buttons"
+    }
+  },
+  {
+    "id": "ZARA-M-KNIT-019",
+    "sequence_id": 19,
+    "file_name": "product (9).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/9126920087372013292",
+    "product_name": "Textured Forest Green Sweater",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 55.9,
+      "original_price": 55.9,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "4432/301/500",
+      "variants": [
+        {
+          "color": "Dark Green",
+          "sizes": ["S", "M", "L", "XL", "XXL"],
+          "hex": "#013220"
+        }
+      ],
+      "stock_level": "In Stock"
+    },
+    "details": {
+      "knit_type": "Fine waffle stitch",
+      "fit": "Regular fit",
+      "care": "Hand wash recommended"
+    }
+  },
+  {
+    "id": "ZARA-W-MULE-020",
+    "sequence_id": 20,
+    "file_name": "product (10).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/13280412657374376180",
+    "product_name": "Bouclé Textured Stiletto Mules",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 59.9,
+      "original_price": 79.9,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "1145/201/020",
+      "variants": [
+        {
+          "color": "Oatmeal",
+          "sizes": ["35", "36", "37", "38", "39", "40"],
+          "hex": "#E3DAC9"
+        }
+      ],
+      "stock_level": "Out of Stock"
+    },
+    "details": {
+      "material": "Bouclé fabric upper",
+      "heel_type": "Architectural stiletto",
+      "inner": "100% Polyurethane lining"
+    }
+  },
+  {
+    "id": "ZARA-M-BOOT-021",
+    "sequence_id": 21,
+    "file_name": "product (1).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/578308976255086119_0",
+    "product_name": "Heritage Brushed Suede Boot",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 119.0,
+      "original_price": 149.0,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "FW24-BT-021",
+      "stock_status": "Low Stock",
+      "variants": [
+        {
+          "color": "Dark Brown",
+          "hex": "#3E2723",
+          "sizes": ["40", "41", "42", "43", "44", "45"]
+        }
+      ]
+    },
+    "details": {
+      "material": "Genuine Cow Suede",
+      "toe_shape": "Rounded Square",
+      "sole": "Heavy-duty lugged rubber"
+    }
+  },
+  {
+    "id": "ZARA-M-SET-022",
+    "sequence_id": 22,
+    "file_name": "product (2).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/8431719072773330229_0",
+    "product_name": "Studio Ribbed Knit & Chino Set",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 85.0,
+      "original_price": 85.0,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "SET-RIB-022",
+      "stock_status": "In Stock",
+      "variants": [
+        { "color": "Black/Sand", "hex": "#000000", "sizes": ["M", "L", "XL"] }
+      ]
+    },
+    "details": {
+      "top": "Cotton-blend heavyweight rib",
+      "bottom": "Tailored canvas shorts",
+      "fit": "Relaxed silhouette"
+    }
+  },
+  {
+    "id": "ZARA-U-TEX-023",
+    "sequence_id": 23,
+    "file_name": "product (3).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/4662921385031611338_0",
+    "product_name": "Marl Heathered Jersey Top",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 29.9,
+      "original_price": 29.9,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "TEX-GREY-023",
+      "stock_status": "High Stock",
+      "variants": [
+        {
+          "color": "Marl Grey",
+          "hex": "#8E8E8E",
+          "sizes": ["S", "M", "L", "XL"]
+        }
+      ]
+    },
+    "details": {
+      "fabric": "Premium Marl Cotton",
+      "texture": "Fine knit weave",
+      "care": "Machine wash cold"
+    }
+  },
+  {
+    "id": "ZARA-U-SWT-024",
+    "sequence_id": 24,
+    "file_name": "product (4).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/13968047245036944569_0",
+    "product_name": "Technical Funnel-Neck Sweatshirt",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 55.9,
+      "original_price": 55.9,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "SWT-ECRU-024",
+      "stock_status": "In Stock",
+      "variants": [
+        { "color": "Ecru", "hex": "#F5F5DC", "sizes": ["S", "M", "L"] }
+      ]
+    },
+    "details": {
+      "fit": "Boxy/Oversized",
+      "neck": "Mock neck collar",
+      "shoulder": "Dropped seam construction"
+    }
+  },
+  {
+    "id": "ZARA-W-SHRT-025",
+    "sequence_id": 25,
+    "file_name": "product (5).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/545487627568377692_0",
+    "product_name": "Stretch Poplin Shirt - Espresso",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 39.9,
+      "original_price": 39.9,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "W-SH-BRN-025",
+      "stock_status": "In Stock",
+      "variants": [
+        {
+          "color": "Espresso Brown",
+          "hex": "#3E2723",
+          "sizes": ["XS", "S", "M", "L"]
+        }
+      ]
+    },
+    "details": {
+      "fabric": "High-stretch poplin",
+      "style": "Button-down pointed collar",
+      "silhouette": "Slim fit"
+    }
+  },
+  {
+    "id": "ZARA-W-SHOE-026",
+    "sequence_id": 26,
+    "file_name": "product (6).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/14427145169996634506_0",
+    "product_name": "Patent Triple-Strap Slingbacks",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 69.9,
+      "original_price": 69.9,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "W-SHO-IVR-026",
+      "stock_status": "Limited Edition",
+      "variants": [
+        {
+          "color": "Ivory",
+          "hex": "#FFFFF0",
+          "sizes": ["36", "37", "38", "39", "40"]
+        }
+      ]
+    },
+    "details": {
+      "finish": "Glossy patent leather",
+      "buckles": "Silver-toned hardware",
+      "toe": "Pointed"
+    }
+  },
+  {
+    "id": "ZARA-M-FULL-027",
+    "sequence_id": 27,
+    "file_name": "product (7).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/1178191662481443308_0",
+    "product_name": "Metropolitan Streetwear Set",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 159.0,
+      "original_price": 185.0,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "SET-MET-027",
+      "stock_status": "In Stock",
+      "variants": [
+        { "color": "Ecru/Blue", "hex": "#FDF5E6", "sizes": ["M", "L", "XL"] }
+      ]
+    },
+    "details": {
+      "components": "Graphic Sweatshirt, Straight Denim, Leather Tote",
+      "aesthetic": "Minimalist urban"
+    }
+  },
+  {
+    "id": "ZARA-W-COAT-028",
+    "sequence_id": 28,
+    "file_name": "product (8).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/8580436918175619743_0",
+    "product_name": "Wool Blend Fur-Collar Coat",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 139.0,
+      "original_price": 139.0,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "W-CT-CAM-028",
+      "stock_status": "Low Stock",
+      "variants": [
+        { "color": "Camel", "hex": "#C19A6B", "sizes": ["S", "M", "L"] }
+      ]
+    },
+    "details": {
+      "material": "Italian wool blend",
+      "collar": "Detachable tonal faux fur",
+      "closure": "Front button-up"
+    }
+  },
+  {
+    "id": "ZARA-M-KNIT-029",
+    "sequence_id": 29,
+    "file_name": "product (9).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/1240727683711040267_0",
+    "product_name": "Textured Forest Crewneck",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 49.9,
+      "original_price": 49.9,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "M-KN-GRN-029",
+      "stock_status": "In Stock",
+      "variants": [
+        {
+          "color": "Dark Green",
+          "hex": "#013220",
+          "sizes": ["S", "M", "L", "XL"]
+        }
+      ]
+    },
+    "details": {
+      "knit": "Fine waffle stitch",
+      "neckline": "Ribbed crew neck",
+      "model_info": "Wearing size L"
+    }
+  },
+  {
+    "id": "ZARA-W-MULE-030",
+    "sequence_id": 30,
+    "file_name": "product (10).jpg",
+    "image_url": "http://googleusercontent.com/image_collection/image_retrieval/9494312438212232909_0",
+    "product_name": "Bouclé Pointed Mules",
+    "brand": "ZARA",
+    "price": {
+      "current_price": 89.9,
+      "original_price": 89.9,
+      "currency": "USD"
+    },
+    "inventory": {
+      "sku": "W-MU-OAT-030",
+      "stock_status": "Out of Stock",
+      "variants": [
+        {
+          "color": "Oatmeal",
+          "hex": "#E3DAC9",
+          "sizes": ["36", "37", "38", "39", "40"]
+        }
+      ]
+    },
+    "details": {
+      "heel": "Architecture stiletto",
+      "fabric": "Oatmeal bouclé upper",
+      "insole": "Comfort foam"
+    }
+  }
+]
