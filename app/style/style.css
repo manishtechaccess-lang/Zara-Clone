@@ -3,7 +3,9 @@
   filter: blur(15px);
   transform: scale(1.5);
 }
-
+.sign-in-img {
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+}
 .label {
   position: absolute;
   top: 14px;
@@ -18,4 +20,13 @@
   top: -6px;
   font-size: 10px;
   color: #000;
+}
+
+.stagger-item {
+  transform: translateX(-100px);
+  opacity: 0;
+}
+.stagger-item-1 {
+  transform: translateX(100px);
+  opacity: 0;
 }

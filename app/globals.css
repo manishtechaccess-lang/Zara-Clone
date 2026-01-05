@@ -233,7 +233,13 @@
   src: url(/font/Lamoric\ Rowen\ TTF.woff2);
 }
 
+@font-face {
+  font-family: vogue;
+  src: url(/font/Vogue.ttf);
+}
+
 @theme {
+  --font-vogue: vogue, "sans-serif";
   --font-against: against, "sans-serif";
   --font-galter: galter, "sans-serif";
   --font-lamoric: lamoric, "sans-serif";
