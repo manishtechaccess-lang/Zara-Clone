@@ -6,7 +6,7 @@
 .sign-in-img {
   clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
 }
-.label {
+/* .label {
   position: absolute;
   top: 14px;
   left: 0;
@@ -14,13 +14,13 @@
   color: #777;
   pointer-events: none;
   transition: all 0.25s ease;
-}
+} */
 
-.email.active .label {
+/* .email.active .label {
   top: -6px;
   font-size: 10px;
   color: #000;
-}
+} */
 
 .stagger-item {
   transform: translateX(-100px);

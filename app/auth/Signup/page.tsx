@@ -15,9 +15,8 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
-import { navigate } from "next/dist/client/components/segment-cache/navigation";
 
-const Signin = () => {
+const Signup = () => {
   const navigate = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
@@ -49,11 +48,16 @@ const Signin = () => {
       duration: 2,
       ease: "expo.inOut",
     });
-    tl.to(imageRef.current, {
-      clipPath: "polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%)",
-      duration: 2,
-      ease: "expo.inOut",
-    });
+    tl.to(
+      imageRef.current,
+      {
+        clipPath: "polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%)",
+        duration: 2,
+        ease: "expo.inOut",
+      },
+      "-=0.2"
+    );
+
     tl.to(
       containerRef.current,
       {
@@ -73,19 +77,50 @@ const Signin = () => {
       },
       "-=1.2"
     );
-
-    // tl.to(signinRef.current, {
-    //   display: "block",
-    //   duration: 0.2,
-    // });
-
-    // tl.to(imageRef.current, {
-    //   scale: 1.02,
-    //   duration: 0.3,
-    //   yoyo: true,
-    //   repeat: 1,
-    // });
   };
+
+  // const handleRegisterClick = () => {
+  //   if (!imageRef.current || !containerRef.current) return;
+  //   const tl = gsap.timeline();
+
+  //   tl.to(imageRef.current, {
+  //     clipPath: "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)",
+  //     duration: 2,
+  //     ease: "expo.inOut",
+  //   });
+  //   tl.to(
+  //     imageRef.current,
+  //     {
+  //       clipPath: "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)",
+  //     },
+  //     "-=0.2"
+  //   );
+  //   tl.to(
+  //     containerRef.current,
+  //     {
+  //       zIndex: "50",
+  //       duration: 0.2,
+  //     },
+  //     "-=0.2"
+  //   );
+  //   tl.to(
+  //     ".stagger-item-1",
+  //     {
+  //       x: 100,
+  //       // opacity: 0,
+  //       filter: "blur(15px)",
+  //       duration: 0.8,
+  //       stagger: 0.15,
+  //       ease: "ease.inOut",
+  //       onComplete: () => {
+  //         gsap.delayedCall(0, () => {
+  //           navigate.push("/auth/Login");
+  //         });
+  //       },
+  //     },
+  //     "-=1.2"
+  //   );
+  // };
 
   const loginSchema = z.object({
     email: z.string({ error: "Password field is required" }),
@@ -146,19 +181,14 @@ const Signin = () => {
                 control={form.control}
                 name="email"
                 render={({ field }) => {
-                  const [active, setActive] = useState(false);
-
                   return (
-                    <FormItem
-                      className={`relative email ${active ? "active" : ""}`}
-                    >
+                    <FormItem className={`relative email}`}>
                       <FormControl>
                         <input
                           type="text"
                           className="w-full border-[rgba(0,0,0,0.6)] border-b outline-none font-gilMedium pt-5"
                           {...field}
-                          onMouseDown={() => setActive(true)}
-                          onFocus={() => setActive(false)}
+                          // onFocus={}
                         />
                       </FormControl>
 
@@ -231,6 +261,7 @@ const Signin = () => {
                 <div>
                   <div
                     onClick={() => navigate.push("/auth/Login")}
+                    // onClick={handleRegisterClick}
                     className="text-center px-8 text-white text-xs border border-black bg-black font-clashLight uppercase py-2 tracking-[0.05rem] cursor-pointer"
                   >
                     Login
@@ -245,4 +276,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Signup;

@@ -23,11 +23,7 @@ const Login = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const loginRef = useRef<HTMLDivElement>(null);
-
-  const [emailActive, setEmailActive] = useState(false);
-  const [passwordActive, setPasswordActive] = useState(false);
-  const [emailValue, setEmailValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
+  const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
   const [authStep, setAuthStep] = useState<"Login" | "Signin">("Login");
 
@@ -108,12 +104,73 @@ const Login = () => {
     // });
   };
 
+  // const handleRegisterClick = () => {
+  //   gsap.to(containerRef.current, {
+  //     opacity: 0,
+  //     duration: 0.3,
+  //     onComplete: () => {
+  //       navigate.push("/auth/Signup");
+  //     },
+  //   });
+  // };
+
+  // Replace your existing handleRegisterClick with this one.
+
   const handleRegisterClick = () => {
-    gsap.to(containerRef.current, {
-      opacity: 0,
-      duration: 0.3,
+    if (!imageRef.current || !containerRef.current || !loginRef.current) return;
+    const tl = gsap.timeline();
+
+    tl.to(
+      containerRef.current,
+      {
+        zIndex: "50",
+        duration: 0.2,
+        ease: "expo.inOut",
+      },
+      "-=0.1"
+    );
+    tl.to(
+      imageRef.current,
+      {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        duration: 1.2,
+        ease: "expo.inOut",
+      },
+      "-=0.2"
+    );
+    tl.fromTo(
+      loginRef.current,
+      {
+        x: 0,
+        opacity: 1,
+      },
+      {
+        x: -100,
+        opacity: 0,
+        duration: 1,
+        ease: "expo.inOut",
+      },
+      "-=1.2"
+    );
+    tl.to(
+      ".stagger-item",
+      {
+        x: -100,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "expo.inOut",
+      },
+      "-=1.2"
+    );
+    tl.to(imageRef.current, {
+      clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
+      duration: 2,
+      ease: "expo.inOut",
       onComplete: () => {
-        navigate.push("/auth/Signin");
+        gsap.delayedCall(0, () => {
+          navigate.push("/auth/Signup");
+        });
       },
     });
   };
@@ -160,28 +217,41 @@ const Login = () => {
                 control={form.control}
                 name="email"
                 render={({ field }) => {
-                  const [active, setActive] = useState(false);
-
                   return (
-                    <FormItem
-                      className={`relative email ${active ? "active" : ""}`}
-                    >
-                      <FormControl>
-                        <input
-                          type="text"
-                          className="w-full border-[rgba(0,0,0,0.6)] border-b outline-none font-gilMedium pt-5"
-                          {...field}
-                          onMouseDown={() => setActive(true)}
-                          onFocus={() => setActive(false)}
-                        />
-                      </FormControl>
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => {
+                        const isActive =
+                          focusedInput === "email" || field.value.length > 0;
 
-                      <FormLabel className="label font-gilLight text-gray-500 text-xs uppercase">
-                        Email
-                      </FormLabel>
+                        return (
+                          <FormItem className="relative">
+                            <FormControl>
+                              <input
+                                {...field}
+                                type="text"
+                                className="w-full border-b border-[rgba(0,0,0,0.6)] outline-none font-gilMedium pt-6 pb-1 bg-transparent"
+                                onFocus={() => setFocusedInput("email")}
+                                onBlur={() => setFocusedInput(null)}
+                              />
+                            </FormControl>
 
-                      <FormMessage className="text-red-500 font-gilRegular" />
-                    </FormItem>
+                            <FormLabel
+                              className={`absolute left-0 transition-all duration-300 ease-out font-gilRegular uppercase pointer-events-none ${
+                                isActive
+                                  ? "top-0 text-[9px] text-black tracking-wider"
+                                  : "top-6 text-xs text-gray-500"
+                              }`}
+                            >
+                              Email
+                            </FormLabel>
+
+                            <FormMessage className="text-red-500 font-gilRegular" />
+                          </FormItem>
+                        );
+                      }}
+                    />
                   );
                 }}
               />
@@ -189,21 +259,34 @@ const Login = () => {
               <FormField
                 control={form.control}
                 name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="font-gilLight text-gray-500 text-xs uppercase">
-                      Password
-                    </FormLabel>
-                    <FormControl>
-                      <input
-                        type="password"
-                        className="w-full border-[rgba(0,0,0,0.6)] border-b outline-none font-gilMedium"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage className="text-red-500 font-gilRegular" />
-                  </FormItem>
-                )}
+                render={({ field }) => {
+                  const isActive =
+                    focusedInput === "password" || field.value.length > 0;
+                  return (
+                    <FormItem className="relative">
+                      <FormControl>
+                        <input
+                          {...field}
+                          type="password"
+                          className="w-full border-[rgba(0,0,0,0.6)] border-b outline-none font-gilRegular pt-6 pb-1 bg-transparent"
+                          onFocus={() => setFocusedInput("password")}
+                          onBlur={() => setFocusedInput(null)}
+                        />
+                      </FormControl>
+
+                      <FormLabel
+                        className={`absolute left-0 transition-all duration-300 ease-out uppercase pointer-events-none font-gilLight ${
+                          isActive
+                            ? "top-0 text-[10px] text-black tracking-wider"
+                            : "top-5 text-xs text-gray-500"
+                        }`}
+                      >
+                        Password
+                      </FormLabel>
+                      <FormMessage className="text-red-500 font-gilRegular" />
+                    </FormItem>
+                  );
+                }}
               />
 
               <div className="pass-forgot">
@@ -223,7 +306,7 @@ const Login = () => {
                 </div>
                 <div className="btn w-full">
                   <div
-                    // onClick={() => navigate.push("/auth/Signin")}
+                    // onClick={() => navigate.push("/auth/Signup")}
                     onClick={handleRegisterClick}
                     className="login-btn w-full text-center border border-black text-neutral-700 text-xs font-clashRegular uppercase py-2 tracking-[0.05rem] cursor-pointer"
                   >
