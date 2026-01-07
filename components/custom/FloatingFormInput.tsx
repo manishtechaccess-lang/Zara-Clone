@@ -1,73 +1,85 @@
 "use client";
+import React, { useEffect, useRef, useState } from "react";
 import {
+  Form,
   FormField,
   FormItem,
-  FormControl,
   FormLabel,
+  FormControl,
   FormMessage,
 } from "@/components/ui/form";
-import { useState } from "react";
-import { Control, FieldValues, Path } from "react-hook-form";
-import { setHeapSnapshotNearHeapLimit } from "v8";
-import { intersection } from "zod";
+import { RiEyeLine, RiEyeOffLine } from "@remixicon/react";
 
-interface FloatingFormInputProps<T extends FieldValues> {
-  control: Control<T>;
-  name: Path<T>;
+interface FloatingFormInputProps {
+  control: any;
+  name: string;
+  className?: string;
+  type?: "text" | "password";
   label: string;
-  type?: string;
 }
 
-const FloatingFormInput = <T extends FieldValues>({
+const FloatingFormInput = ({
   control,
   name,
+  className,
+  type,
   label,
-  type = "text",
-}: FloatingFormInputProps<T>) => {
-  const [active, setActive] = useState(false);
-  const [hasValue, setHasValue] = useState(false);
+}: FloatingFormInputProps) => {
+  const [focusedInput, setFocusedInput] = useState<string | null>(null);
+  const [isShowPassword, setIsShowPassword] = useState(false);
 
   return (
     <FormField
       control={control}
       name={name}
-      render={({ field }) => (
-        <FormItem className="relative">
-          <FormControl>
-            <input
-              type={type}
-              {...field}
-              onFocus={() => setActive(true)}
-              onBlur={(e) => {
-                setActive(false);
-                setHasValue(e.target.value.length > 0);
-                field.onBlur();
-              }}
-              onChange={(e) => {
-                setHasValue(e.target.value.length > 0);
-                field.onChange(e);
-              }}
-            />
-          </FormControl>
+      render={({ field }) => {
+        const isActive = focusedInput === name || field.value.length > 0;
+        return (
+          <FormItem className={`relative ${className}`}>
+            <FormControl>
+              <div className="relative">
+                <input
+                  {...field}
+                  type={
+                    type === "password"
+                      ? isShowPassword
+                        ? "text"
+                        : "password"
+                      : type
+                  }
+                  className="w-full border-b border-[rgba(0,0,0,0.6)] outline-none font-gilRegular pt-6 pb-1 bg-transparent"
+                  onFocus={() => setFocusedInput(name)}
+                  onBlur={() => setFocusedInput(null)}
+                />
 
-          <FormLabel
-            className={`
-              pointer-events-none absolute left-0
-              text-xs uppercase font-gilLight text-gray-500
-              transition-all duration-300 ease-out
-              ${
-                active || hasValue
-                  ? "top-1 scale-90 text-black"
-                  : "top-5 scale-100"
-              }
-            `}
-          >
-            {label}
-          </FormLabel>
+                {type === "password" && (
+                  <div
+                    onClick={() => setIsShowPassword(!isShowPassword)}
+                    className="absolute right-0 top-[70%] translate-y-[-70%] cursor-pointer text-neutral-600"
+                  >
+                    {!isShowPassword ? (
+                      <RiEyeLine size={18} />
+                    ) : (
+                      <RiEyeOffLine size={18} />
+                    )}
+                  </div>
+                )}
+              </div>
+            </FormControl>
 
-          <FormMessage className="font-gilRegular text-red-500" />
-        </FormItem>
-      )}
+            <FormLabel
+              className={`absolute left-0 transition-all duration-300 ease-out uppercase pointer-events-none font-gilRegular ${
+                isActive
+                  ? "top-0 text-[10px] text-black tracking-wider"
+                  : "top-5 text-xs text-gray-500"
+              }`}
+            >
+              {label}
+            </FormLabel>
+            <FormMessage className="text-red-500 font-gilRegular" />
+          </FormItem>
+        );
+      }}
     />
   );
 };

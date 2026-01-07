@@ -19,6 +19,7 @@ const CategoryPage = () => {
       setLoading(false);
     }
   };
+  console.log(products);
 
   useEffect(() => {
     fetchCategories();
@@ -60,7 +61,7 @@ const CategoryPage = () => {
       {products.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3 lg:gap-4 space-y-20">
           {products.map((product: any) => (
-            <div key={product.id}>
+            <div key={product.id} className="bg-[#e3e7ea]">
               <div className="header">
                 <div className="relative w-full overflow-hidden">
                   {/* <Skeleton> */}

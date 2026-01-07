@@ -16,6 +16,8 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
+import { RiEyeLine, RiEyeOffLine } from "@remixicon/react";
+import FloatingFormInput from "@/components/custom/FloatingFormInput";
 
 const Login = () => {
   // const pathname = usePathname();
@@ -24,8 +26,8 @@ const Login = () => {
   const imageRef = useRef<HTMLDivElement>(null);
   const loginRef = useRef<HTMLDivElement>(null);
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
-
-  const [authStep, setAuthStep] = useState<"Login" | "Signin">("Login");
+  const [isShow, setIsShow] = useState(false);
+  // const [authStep, setAuthStep] = useState<"Login" | "Signin">("Login");
 
   useEffect(() => {
     startImageAnimation();
@@ -165,18 +167,18 @@ const Login = () => {
     );
     tl.to(imageRef.current, {
       clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)",
-      duration: 2,
+      duration: 1,
       ease: "expo.inOut",
       onComplete: () => {
-        gsap.delayedCall(0, () => {
-          navigate.push("/auth/Signup");
-        });
+        // gsap.delayedCall(0, () => {
+        navigate.push("/auth/Signup");
+        // });
       },
     });
   };
 
   const loginSchema = z.object({
-    email: z.string({ error: "Password field is required" }),
+    email: z.string().min(1, "Email field is required"),
     password: z.string().min(1, "Password field is required"),
   });
   type loginValues = z.infer<typeof loginSchema>;
@@ -213,80 +215,18 @@ const Login = () => {
               onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-6 stagger-item"
             >
-              <FormField
+              <FloatingFormInput
                 control={form.control}
                 name="email"
-                render={({ field }) => {
-                  return (
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => {
-                        const isActive =
-                          focusedInput === "email" || field.value.length > 0;
-
-                        return (
-                          <FormItem className="relative">
-                            <FormControl>
-                              <input
-                                {...field}
-                                type="text"
-                                className="w-full border-b border-[rgba(0,0,0,0.6)] outline-none font-gilMedium pt-6 pb-1 bg-transparent"
-                                onFocus={() => setFocusedInput("email")}
-                                onBlur={() => setFocusedInput(null)}
-                              />
-                            </FormControl>
-
-                            <FormLabel
-                              className={`absolute left-0 transition-all duration-300 ease-out font-gilRegular uppercase pointer-events-none ${
-                                isActive
-                                  ? "top-0 text-[9px] text-black tracking-wider"
-                                  : "top-6 text-xs text-gray-500"
-                              }`}
-                            >
-                              Email
-                            </FormLabel>
-
-                            <FormMessage className="text-red-500 font-gilRegular" />
-                          </FormItem>
-                        );
-                      }}
-                    />
-                  );
-                }}
+                label="Email"
+                type="text"
               />
 
-              <FormField
+              <FloatingFormInput
                 control={form.control}
                 name="password"
-                render={({ field }) => {
-                  const isActive =
-                    focusedInput === "password" || field.value.length > 0;
-                  return (
-                    <FormItem className="relative">
-                      <FormControl>
-                        <input
-                          {...field}
-                          type="password"
-                          className="w-full border-[rgba(0,0,0,0.6)] border-b outline-none font-gilRegular pt-6 pb-1 bg-transparent"
-                          onFocus={() => setFocusedInput("password")}
-                          onBlur={() => setFocusedInput(null)}
-                        />
-                      </FormControl>
-
-                      <FormLabel
-                        className={`absolute left-0 transition-all duration-300 ease-out uppercase pointer-events-none font-gilLight ${
-                          isActive
-                            ? "top-0 text-[10px] text-black tracking-wider"
-                            : "top-5 text-xs text-gray-500"
-                        }`}
-                      >
-                        Password
-                      </FormLabel>
-                      <FormMessage className="text-red-500 font-gilRegular" />
-                    </FormItem>
-                  );
-                }}
+                label="Password"
+                type="password"
               />
 
               <div className="pass-forgot">

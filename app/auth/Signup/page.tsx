@@ -15,6 +15,7 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
+import FloatingFormInput from "@/components/custom/FloatingFormInput";
 
 const Signup = () => {
   const navigate = useRouter();
@@ -175,71 +176,27 @@ const Signup = () => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-6 stagger-item-1"
+              className="space-y-8 stagger-item-1"
             >
-              <FormField
+              <FloatingFormInput
                 control={form.control}
                 name="email"
-                render={({ field }) => {
-                  return (
-                    <FormItem className={`relative email}`}>
-                      <FormControl>
-                        <input
-                          type="text"
-                          className="w-full border-[rgba(0,0,0,0.6)] border-b outline-none font-gilMedium pt-5"
-                          {...field}
-                          // onFocus={}
-                        />
-                      </FormControl>
-
-                      <FormLabel className="label font-gilLight text-gray-500 text-xs uppercase">
-                        Email
-                      </FormLabel>
-
-                      <FormMessage className="text-red-500 font-gilRegular" />
-                    </FormItem>
-                  );
-                }}
+                label="Email"
+                type="text"
               />
 
-              <FormField
+              <FloatingFormInput
                 control={form.control}
                 name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="font-gilLight text-gray-500 text-xs uppercase">
-                      Password
-                    </FormLabel>
-                    <FormControl>
-                      <input
-                        type="password"
-                        className="w-full border-[rgba(0,0,0,0.6)] border-b outline-none font-gilMedium"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage className="text-red-500 font-gilRegular" />
-                  </FormItem>
-                )}
+                label="Password"
+                type="password"
               />
 
-              <FormField
+              <FloatingFormInput
                 control={form.control}
                 name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="font-gilLight text-gray-500 text-xs uppercase">
-                      Name
-                    </FormLabel>
-                    <FormControl>
-                      <input
-                        type="name"
-                        className="w-full border-[rgba(0,0,0,0.6)] border-b outline-none font-gilMedium"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage className="text-red-500 font-gilRegular" />
-                  </FormItem>
-                )}
+                label="Name"
+                type="text"
               />
 
               <div className="pass-forgot">
