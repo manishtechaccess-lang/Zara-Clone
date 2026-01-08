@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,14 +8,112 @@ datasource db {
 }
 
 model User {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
   name      String
-  email     String  @unique
-  password  String?
-  // cart      Cart?
-  // wishlist  Wishlist?
-  createdAt DateTime @default(now())
+  email     String    @unique
+  password  String
+  role      Role      @default(USER)
+  cart      Cart?
+  wishlist  Wishlist?
+  orders    Order[]
+  createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
 
-// model 
+model Category {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String    @unique
+  products      Product[]
+}
+
+model Product {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  title         String
+  description   String
+  price         Float
+  images        String[]
+  sizes         String[]
+  stock         Int
+  categoryId    String      @db.ObjectId // Fixed: Added @db.ObjectId
+  category      Category    @relation(fields: [categoryId], references: [id])
+  
+  // Back-relations (Required by Prisma)
+  cartItems     CartItem[]
+  orderItems    OrderItem[]
+  wishlistIDs   String[]    @db.ObjectId // Required for MongoDB many-to-many
+  wishlists     Wishlist[]  @relation(fields: [wishlistIDs], references: [id])
+
+  createdAt     DateTime    @default(now())
+}
+
+model Cart {
+  id     String     @id @default(auto()) @map("_id") @db.ObjectId
+  userId String     @unique @db.ObjectId // Fixed: Added @db.ObjectId
+  user   User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items  CartItem[]
+
+  updatedAt DateTime @updatedAt
+}
+
+model CartItem {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  cartId    String  @db.ObjectId // Fixed: Added @db.ObjectId
+  productId String  @db.ObjectId // Fixed: Added @db.ObjectId
+  quantity  Int     @default(1)
+  size      String
+
+  cart    Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Wishlist {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String    @unique @db.ObjectId // Fixed: Added @db.ObjectId
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  productIDs String[]  @db.ObjectId // Required for MongoDB many-to-many
+  products   Product[] @relation(fields: [productIDs], references: [id])
+}
+
+model Order {
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String      @db.ObjectId // Fixed: Added @db.ObjectId
+  user        User        @relation(fields: [userId], references: [id])
+  items       OrderItem[]
+  totalAmount Float
+  status      OrderStatus @default(PENDING)
+  createdAt   DateTime    @default(now())
+}
+
+model OrderItem {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  orderId   String  @db.ObjectId // Fixed: Added @db.ObjectId
+  productId String  @db.ObjectId // Fixed: Added @db.ObjectId
+  quantity  Int
+  price     Float
+  size      String
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum Role {
+  USER
+  ADMIN
+  SUPER_ADMIN
+}
+
+
+// Connection,Type,Why?
+//todo      <-------- User → Order,One-to-Many,A user can have many past orders.
+//todo      <-------- Cart → CartItem,One-to-Many,One cart contains multiple specific items.
+//todo      <-------- Product → Category,Many-to-One,Multiple products belong to one category.
+//todo      <-------- Product ↔ Wishlist,Many-to-Many,"Many users can ""like"" many products."
