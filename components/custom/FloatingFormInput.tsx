@@ -22,7 +22,7 @@ const FloatingFormInput = ({
   control,
   name,
   className,
-  type,
+  type = "text",
   label,
 }: FloatingFormInputProps) => {
   const [focusedInput, setFocusedInput] = useState<string | null>(null);

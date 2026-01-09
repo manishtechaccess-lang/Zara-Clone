@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { startTransition, useEffect, useRef, useState } from "react";
 import "../../style/style.css";
 import Link from "next/link";
 import gsap from "gsap";
@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 import {
   Form,
   FormField,
@@ -16,17 +17,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import FloatingFormInput from "@/components/custom/FloatingFormInput";
+import ErrorToast from "@/components/custom/Toast/ErrorToast";
+import SuccessToast from "@/components/custom/Toast/SuccessToast";
 
 const Signup = () => {
   const navigate = useRouter();
+  const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const signinRef = useRef<HTMLDivElement>(null);
-
-  const [emailActive, setEmailActive] = useState(false);
-  const [passwordActive, setPasswordActive] = useState(false);
-  const [emailValue, setEmailValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
 
   useEffect(() => {
     startImageAnimation();
@@ -39,11 +38,6 @@ const Signup = () => {
       defaults: { ease: "power3.inOut" },
     });
 
-    // gsap.set(imageRef.current, {
-    //   scale: 1.5,
-    //   filter: "blur(15px)",
-    //   clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-    // });
     tl.to(imageRef.current, {
       clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
       duration: 2,
@@ -123,15 +117,15 @@ const Signup = () => {
   //   );
   // };
 
-  const loginSchema = z.object({
+  const signUpSchema = z.object({
     email: z.string({ error: "Password field is required" }),
     password: z.string().min(1, "Password field is required"),
     name: z.string().min(1, "Name field is required"),
   });
-  type loginValues = z.infer<typeof loginSchema>;
+  type signUpValues = z.infer<typeof signUpSchema>;
 
-  const form = useForm({
-    resolver: zodResolver(loginSchema),
+  const form = useForm<signUpValues>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -139,15 +133,33 @@ const Signup = () => {
     },
   });
 
-  const onSubmit = (data: loginValues) => {
-    console.log(data.email, data.password);
+  const onSubmit = (values: signUpValues) => {
+    startTransition(async () => {
+      try {
+        const res = await axios.post("/api/users/signup", {
+          name: values.name,
+          email: values.email,
+          password: values.password,
+        });
+        if (!res.data.success) {
+          ErrorToast(res.data.message);
+          return;
+        }
+
+        SuccessToast("Account created successfully!");
+        router.push("/auth/Login");
+      } catch (error: any) {
+        console.log("Signup error: ", error);
+        ErrorToast("Signup Failed");
+      }
+    });
   };
 
   return (
     <main className="relative min-h-screen">
       <section
         ref={containerRef}
-        className="sec-1 h-[100vh] w-full absolute top-0 left-0 z-50 overflow-hidden"
+        className="sec-1 h-[100vh] w-full hidden lg:block absolute top-0 left-0 z-50 overflow-hidden"
       >
         <div ref={imageRef} className="w-full h-full sign-in-img">
           <img
@@ -158,7 +170,7 @@ const Signup = () => {
         </div>
       </section>
       <section
-        className="sec-2 w-[40%] py-4 px-24 absolute right-0 top-0 space-y-12 z-20 overflow-hidden"
+        className="sec-2 static w-full max-w-2xl mx-auto lg:w-[40%] py-4 px-24 lg:absolute right-0 top-0 space-y-12 z-20 overflow-hidden"
         ref={signinRef}
       >
         <div className="header stagger-item-1">

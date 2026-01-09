@@ -53,7 +53,7 @@ export const POST = async (req: NextRequest) => {
     }
 
     const tokenData = {
-      id: isUserExist._id,
+      id: isUserExist.id,
       name: isUserExist.name,
       email: isUserExist.email,
     };

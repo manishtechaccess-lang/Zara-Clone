@@ -1,8 +1,8 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { startTransition, useEffect, useRef, useState } from "react";
 import "../../style/style.css";
 import Link from "next/link";
-import gsap from "gsap";
+import gsap, { set } from "gsap";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,15 +18,20 @@ import {
 } from "@/components/ui/form";
 import { RiEyeLine, RiEyeOffLine } from "@remixicon/react";
 import FloatingFormInput from "@/components/custom/FloatingFormInput";
+import axios from "axios";
+import ErrorToast from "@/components/custom/Toast/ErrorToast";
+import SuccessToast from "@/components/custom/Toast/SuccessToast";
+import Loader from "@/components/custom/Loader/Loader";
+import { fa } from "zod/v4/locales";
 
 const Login = () => {
   // const pathname = usePathname();
   const navigate = useRouter();
+  const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const loginRef = useRef<HTMLDivElement>(null);
-  const [focusedInput, setFocusedInput] = useState<string | null>(null);
-  const [isShow, setIsShow] = useState(false);
+  const [isLoading, setLoading] = useState<boolean>(false);
   // const [authStep, setAuthStep] = useState<"Login" | "Signin">("Login");
 
   useEffect(() => {
@@ -106,18 +111,6 @@ const Login = () => {
     // });
   };
 
-  // const handleRegisterClick = () => {
-  //   gsap.to(containerRef.current, {
-  //     opacity: 0,
-  //     duration: 0.3,
-  //     onComplete: () => {
-  //       navigate.push("/auth/Signup");
-  //     },
-  //   });
-  // };
-
-  // Replace your existing handleRegisterClick with this one.
-
   const handleRegisterClick = () => {
     if (!imageRef.current || !containerRef.current || !loginRef.current) return;
     const tl = gsap.timeline();
@@ -191,12 +184,39 @@ const Login = () => {
     },
   });
 
-  const onSubmit = (data: loginValues) => {
-    console.log(data.email, data.password);
+  const onSubmit = (values: loginValues) => {
+    // console.log(data.email, data.password);
+
+    startTransition(async () => {
+      try {
+        setLoading(true);
+        const response = await axios.post("/api/users/login", {
+          email: values.email,
+          password: values.password,
+        });
+        if (!response.data.success) {
+          ErrorToast(response.data.message);
+          setLoading(false);
+          return;
+        }
+        SuccessToast("Login successfully!");
+        router.push("/");
+      } catch (error: any) {
+        console.log("Login error: ", error);
+        ErrorToast("Login Failed");
+        setLoading(false);
+      }
+    });
   };
 
   return (
     <main className="relative min-h-screen">
+      {isLoading && (
+        <div className="z-[100]">
+          <Loader />
+        </div>
+      )}
+
       <section className="sec-1 w-[40%] py-4 px-24 space-y-12 absolute left-0 top-0 z-20">
         <div className="header" ref={loginRef}>
           <Link
@@ -257,6 +277,7 @@ const Login = () => {
             </form>
           </Form>
         </div>
+        {/* <Loader /> */}
       </section>
       <section
         ref={containerRef}
