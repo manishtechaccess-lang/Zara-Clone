@@ -16,13 +16,12 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
-import { RiEyeLine, RiEyeOffLine } from "@remixicon/react";
+// import { RiEyeLine, RiEyeOffLine } from "@remixicon/react";
 import FloatingFormInput from "@/components/custom/FloatingFormInput";
 import axios from "axios";
 import ErrorToast from "@/components/custom/Toast/ErrorToast";
 import SuccessToast from "@/components/custom/Toast/SuccessToast";
 import Loader from "@/components/custom/Loader/Loader";
-import { fa } from "zod/v4/locales";
 
 const Login = () => {
   // const pathname = usePathname();
@@ -176,7 +175,7 @@ const Login = () => {
   });
   type loginValues = z.infer<typeof loginSchema>;
 
-  const form = useForm({
+  const form = useForm<loginValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
@@ -186,10 +185,9 @@ const Login = () => {
 
   const onSubmit = (values: loginValues) => {
     // console.log(data.email, data.password);
-
+    setLoading(true);
     startTransition(async () => {
       try {
-        setLoading(true);
         const response = await axios.post("/api/users/login", {
           email: values.email,
           password: values.password,
@@ -204,6 +202,7 @@ const Login = () => {
       } catch (error: any) {
         console.log("Login error: ", error);
         ErrorToast("Login Failed");
+      } finally {
         setLoading(false);
       }
     });
@@ -212,7 +211,7 @@ const Login = () => {
   return (
     <main className="relative min-h-screen">
       {isLoading && (
-        <div className="z-[100]">
+        <div className="">
           <Loader />
         </div>
       )}

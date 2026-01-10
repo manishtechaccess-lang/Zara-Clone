@@ -1,17 +1,24 @@
 "use client";
 import axios from "axios";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { RiBookmarkLine } from "@remixicon/react";
+import { useRouter } from "next/navigation";
 
-const CategoryPage = () => {
+const CategoryPage = ({ params }: { params: { slug: string } }) => {
+  const navigate = useRouter();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchCategories = async () => {
     try {
       const res = await axios.get(`https://api.escuelajs.co/api/v1/products`);
+
+      // const filteredProducts = res.data.filter(
+      //   (product: any) => product.category?.name?.toLowerCase() === params.slug
+      // );
+
       setProducts(res.data);
       setLoading(false);
     } catch (error: any) {
@@ -61,7 +68,11 @@ const CategoryPage = () => {
       {products.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3 lg:gap-4 space-y-20">
           {products.map((product: any) => (
-            <div key={product.id} className="">
+            <div
+              onClick={() => navigate.push(`/product/${product.id}`)}
+              key={product.id}
+              className=""
+            >
               <div className="header">
                 <div className="relative w-full overflow-hidden">
                   {/* <Skeleton> */}
