@@ -7,6 +7,7 @@ import { useParams, useRouter } from "next/navigation";
 import ErrorToast from "@/components/custom/Toast/ErrorToast";
 import Navbar from "@/components/layout/Navbar/Navbar";
 import { RiBookLine, RiBookmarkLine } from "@remixicon/react";
+import AddToCard from "@/components/custom/AddToCart/addToCart";
 
 export interface Category {
   id: number;
@@ -97,7 +98,10 @@ const Product = () => {
           </div>
 
           <div className="add w-full">
-            <div className="uppercase border border-black text-center font-clashRegular cursor-pointer text-xs py-2 tracking-wide btn">
+            <div
+              onClick={() => AddToCard(product?.id as number)}
+              className="uppercase border border-black text-center font-clashRegular cursor-pointer text-xs py-2 tracking-wide btn"
+            >
               add
             </div>
           </div>
