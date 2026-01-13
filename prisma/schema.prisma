@@ -19,30 +19,6 @@ model User {
   createdAt DateTime  @default(now())
 }
 
-model Category {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String    @unique
-  products      Product[]
-}
-
-model Product {
-  id            String      @id @default(auto()) @map("_id") @db.ObjectId
-  title         String
-  description   String
-  price         Float
-  images        String[]
-  stock         Int
-  categoryId    String      @db.ObjectId // Fixed: Added @db.ObjectId
-  category      Category    @relation(fields: [categoryId], references: [id])
-  
-  // Back-relations (Required by Prisma)
-  cartItems     CartItem[]
-  orderItems    OrderItem[]
-  wishlistIDs   String[]    @db.ObjectId // Required for MongoDB many-to-many
-  wishlists     Wishlist[]  @relation(fields: [wishlistIDs], references: [id])
-
-  createdAt     DateTime    @default(now())
-}
 
 model Cart {
   id     String     @id @default(auto()) @map("_id") @db.ObjectId
@@ -55,12 +31,15 @@ model Cart {
 
 model CartItem {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  cartId    String  @db.ObjectId // Fixed: Added @db.ObjectId
-  productId String  @db.ObjectId // Fixed: Added @db.ObjectId
+  cartId    String
+  externalProductId String
+  title     String
+  price     Float
+  image     String?
   quantity  Int     @default(1)
 
   cart    Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
-  product Product @relation(fields: [productId], references: [id])
+  createdAt DateTime @default(now())
 }
 
 model Wishlist {
@@ -69,7 +48,6 @@ model Wishlist {
   user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   
   productIDs String[]  @db.ObjectId // Required for MongoDB many-to-many
-  products   Product[] @relation(fields: [productIDs], references: [id])
 }
 
 model Order {
@@ -85,12 +63,13 @@ model Order {
 model OrderItem {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
   orderId   String  @db.ObjectId // Fixed: Added @db.ObjectId
-  productId String  @db.ObjectId // Fixed: Added @db.ObjectId
+  externalProductId String
+  title     String
   quantity  Int
   price     Float
 
   order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  product Product @relation(fields: [productId], references: [id])
+  createdAt DateTime @default(now())
 }
 
 enum OrderStatus {

@@ -74,6 +74,9 @@ export const POST = async (req: NextRequest) => {
       name: "token",
       value: token,
       httpOnly: true,
+      path: "/",
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
     });
     return response;
   } catch (error: any) {

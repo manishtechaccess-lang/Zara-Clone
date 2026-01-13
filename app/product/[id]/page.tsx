@@ -2,12 +2,11 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useParams, useRouter } from "next/navigation";
 import ErrorToast from "@/components/custom/Toast/ErrorToast";
 import Navbar from "@/components/layout/Navbar/Navbar";
 import { RiBookLine, RiBookmarkLine } from "@remixicon/react";
-import AddToCard from "@/components/custom/AddToCart/addToCart";
+import useAddToCart from "@/components/custom/AddToCart/useAddToCart";
 
 export interface Category {
   id: number;
@@ -34,6 +33,7 @@ const Product = () => {
   const navigate = useRouter();
   const [product, setProducts] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
+  const { addToCart, isPending } = useAddToCart();
 
   const fetchProductData = async () => {
     try {
@@ -55,39 +55,38 @@ const Product = () => {
       navigate.push("/");
     }
     fetchProductData();
-  }, [params.id, navigate]);
+  }, []);
 
   return (
     <main>
       <Navbar />
-      <section className="grid grid-cols-2 gap-20 px-40">
-        <div className="image w-full">
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 lg:gap-20 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-40">
+        {/* Main image - full width on mobile, first column on desktop */}
+        <div className="image w-full lg:order-1">
           <div className="relative w-full bg-gray-100">
             <img
               src={product?.images[0]}
-              className="object-cover w-full h-[45rem] cursor-pointer"
+              className="object-cover w-full h-[20rem] sm:h-[25rem] md:h-[30rem] lg:h-[35rem] xl:h-[45rem] cursor-pointer"
               alt={product?.title}
             />
           </div>
         </div>
-        <div className="details w-md h-[45rem] flex items-center justify-center flex-col gap-10 ml-36">
-          <div className="upper-sec w-full border-b border-[rgba(0,0,0,0.7)] pb-8">
+
+        {/* Product details - full width on mobile, second column on desktop */}
+        <div className="details w-full lg:w-auto h-auto lg:h-[45rem] flex flex-col items-center justify-center gap-6 lg:gap-10 lg:ml-8 xl:ml-36 lg:order-2">
+          <div className="upper-sec w-full border-b border-[rgba(0,0,0,0.7)] pb-6 md:pb-8">
             <div className="flex items-start justify-between">
               <div
-                className="font-clashRegular uppercase text-lg w-[80%]"
+                className="font-clashRegular uppercase text-base sm:text-lg w-[80%]"
                 style={{ wordSpacing: "0.1rem" }}
               >
                 {product?.title}
               </div>
               <div className="cursor-pointer">
-                {" "}
-                <RiBookmarkLine
-                  size={16}
-                  className="text-neutral-600 mt-1.5"
-                />{" "}
+                <RiBookmarkLine size={16} className="text-neutral-600 mt-1.5" />
               </div>
             </div>
-            <div className="price">
+            <div className="price mt-4">
               <div className="font-clashRegular text-lg">
                 $ {product?.price}
               </div>
@@ -99,47 +98,55 @@ const Product = () => {
 
           <div className="add w-full">
             <div
-              onClick={() => AddToCard(product?.id as number)}
-              className="uppercase border border-black text-center font-clashRegular cursor-pointer text-xs py-2 tracking-wide btn"
+              onClick={() => addToCart(String(product?.id))}
+              className="uppercase border border-black text-center font-clashRegular cursor-pointer text-xs py-2.5 sm:py-2 tracking-wide btn"
             >
               add
             </div>
           </div>
 
           <div className="dec">
-            <p className="font-gilLight text-sm">{product?.description}</p>
+            <p className="font-gilLight text-sm md:text-base">
+              {product?.description}
+            </p>
           </div>
         </div>
 
-        <div className="detail w-md h-[45rem] flex items-center justify-center">
-          <p className="font-gilLight text-sm text-justify">
+        {/* Description section - full width on mobile, first column on desktop (below image) */}
+        <div className="detail w-full lg:w-auto h-auto lg:h-[45rem] flex items-center lg:items-center justify-center lg:justify-start lg:order-3 lg:pt-10">
+          <p className="font-gilLight text-sm md:text-base text-justify lg:text-left">
             {product?.description}
           </p>
         </div>
 
-        <div className="image w-full">
+        {/* Second image - full width on mobile, second column on desktop (below details) */}
+        <div className="image w-full lg:order-4">
           <div className="relative w-full bg-gray-100">
             <img
               src={product?.images[1]}
-              className="object-cover w-full h-[45rem] cursor-pointer"
+              className="object-cover w-full h-[20rem] sm:h-[25rem] md:h-[30rem] lg:h-[35rem] xl:h-[45rem] cursor-pointer"
               alt={product?.title}
             />
           </div>
         </div>
-        <div className="image w-full">
+
+        {/* Third image - full width on mobile, first column on desktop (below description) */}
+        <div className="image w-full lg:order-5">
           <div className="relative w-full bg-gray-100">
             <img
               src={product?.images[2]}
-              className="object-cover w-full h-[45rem] cursor-pointer"
+              className="object-cover w-full h-[20rem] sm:h-[25rem] md:h-[30rem] lg:h-[35rem] xl:h-[45rem] cursor-pointer"
               alt={product?.title}
             />
           </div>
         </div>
-        <div className="image w-full">
+
+        {/* Fourth image - full width on mobile, second column on desktop (below second image) */}
+        <div className="image w-full lg:order-6">
           <div className="relative w-full bg-gray-100">
             <img
               src={product?.images[0]}
-              className="object-cover w-full h-[45rem] cursor-pointer"
+              className="object-cover w-full h-[20rem] sm:h-[25rem] md:h-[30rem] lg:h-[35rem] xl:h-[45rem] cursor-pointer"
               alt={product?.title}
             />
           </div>
