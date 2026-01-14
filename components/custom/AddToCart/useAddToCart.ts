@@ -2,9 +2,12 @@ import axios from "axios";
 import { useTransition } from "react";
 import ErrorToast from "../Toast/ErrorToast";
 import SuccessToast from "../Toast/SuccessToast";
+import { setCart } from "@/libs/dataslice";
+import { useDispatch } from "react-redux";
 
 const useAddToCart = () => {
   const [isPending, startTransition] = useTransition();
+  const dispatch = useDispatch();
 
   const addToCart = (proId: string) => {
     startTransition(async () => {

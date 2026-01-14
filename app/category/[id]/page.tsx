@@ -5,11 +5,27 @@ import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { RiBookmarkLine } from "@remixicon/react";
 import { useRouter } from "next/navigation";
+import productsData from "@/app/Data/dummy.json";
 
 const CategoryPage = ({ params }: { params: { slug: string } }) => {
   const navigate = useRouter();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const filtered =
+        params.slug === "all" || !params.slug
+          ? productsData
+          : productsData.filter(
+              (product: any) =>
+                product.category?.slug?.toLowerCase() ===
+                params.slug.toLowerCase()
+            );
+      // console.log(filtered);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [params?.slug]);
 
   const fetchCategories = async () => {
     try {
@@ -113,3 +129,5 @@ const CategoryPage = ({ params }: { params: { slug: string } }) => {
 };
 
 export default CategoryPage;
+
+//todo  <---------------------- END -------------------------->
