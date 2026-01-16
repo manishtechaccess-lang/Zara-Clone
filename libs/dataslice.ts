@@ -10,9 +10,9 @@ import {
 } from "@/interface";
 
 const initialState = {
-  userInfo: {} as User,
-  cart: {} as Cart,
-  wishlist: {} as Wishlist,
+  userInfo: null as User | null,
+  cart: null as Cart | null,
+  wishlist: null as Wishlist | null,
   orders: [] as Order[],
 };
 

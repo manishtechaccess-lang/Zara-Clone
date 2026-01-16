@@ -55,7 +55,7 @@ const Navbar = () => {
               log in
             </div>
             <div
-              onClick={() => navigate.push("/Cart")}
+              onClick={() => navigate.push("/cart")}
               className="cursor-pointer font-clashRegular text-sm text-neutral-500 uppercase whitespace-nowrap add-cart"
             >
               Bag

@@ -19,6 +19,7 @@ import {
 import FloatingFormInput from "@/components/custom/FloatingFormInput";
 import ErrorToast from "@/components/custom/Toast/ErrorToast";
 import SuccessToast from "@/components/custom/Toast/SuccessToast";
+import { isBigInt64Array } from "util/types";
 
 const Signup = () => {
   const navigate = useRouter();
@@ -26,52 +27,76 @@ const Signup = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const signinRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // if (window.innerWidth < 1024) return;
+
     startImageAnimation();
   }, []);
 
   const startImageAnimation = () => {
     if (!imageRef.current || !containerRef.current) return;
 
-    const tl = gsap.timeline({
-      defaults: { ease: "power3.inOut" },
-    });
+    const matchMedia = gsap.matchMedia();
 
-    tl.to(imageRef.current, {
-      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-      duration: 2,
-      ease: "expo.inOut",
-    });
-    tl.to(
-      imageRef.current,
-      {
-        clipPath: "polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%)",
+    matchMedia.add("(min-width: 1024px)", () => {
+      const tl = gsap.timeline({
+        defaults: { ease: "power3.inOut" },
+      });
+      tl.to(imageRef.current, {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
         duration: 2,
         ease: "expo.inOut",
-      },
-      "-=0.2"
-    );
+      });
+      tl.to(
+        imageRef.current,
+        {
+          clipPath: "polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%)",
+          duration: 2,
+          ease: "expo.inOut",
+        },
+        "-=0.2"
+      );
+      tl.to(
+        containerRef.current,
+        {
+          zIndex: "10",
+          duration: 0.2,
+        },
+        "-=0.2"
+      );
+      tl.to(
+        ".stagger-item-1",
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "ease.inOut",
+        },
+        "-=1.2"
+      );
 
-    tl.to(
-      containerRef.current,
-      {
-        zIndex: "10",
-        duration: 0.2,
-      },
-      "-=0.2"
-    );
-    tl.to(
-      ".stagger-item-1",
-      {
+      return () => tl.kill();
+    });
+
+    matchMedia.add("(max-width: 1023px)", () => {
+      const tl = gsap.timeline({
+        defaults: { ease: "power3.inOut" },
+      });
+
+      tl.to(containerRef.current, { zIndex: 10 });
+
+      tl.to(".stagger-item-1", {
         x: 0,
         opacity: 1,
         duration: 0.8,
         stagger: 0.15,
         ease: "ease.inOut",
-      },
-      "-=1.2"
-    );
+      });
+      return () => tl.kill();
+    });
   };
 
   // const handleRegisterClick = () => {

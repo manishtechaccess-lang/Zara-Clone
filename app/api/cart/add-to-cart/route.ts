@@ -1,8 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import { getUserFromToken } from "@/helper/auth.helper";
-import axios from "axios";
 import { prisma } from "@/libs/prisma";
-import { success } from "zod";
 import getProductData from "@/helper/getProductData";
 
 export const POST = async (req: NextRequest) => {

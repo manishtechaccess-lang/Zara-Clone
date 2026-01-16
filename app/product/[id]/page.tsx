@@ -7,6 +7,8 @@ import ErrorToast from "@/components/custom/Toast/ErrorToast";
 import Navbar from "@/components/layout/Navbar/Navbar";
 import { RiBookLine, RiBookmarkLine } from "@remixicon/react";
 import useAddToCart from "@/components/custom/AddToCart/useAddToCart";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/libs/store";
 
 export interface Category {
   id: number;
@@ -29,19 +31,26 @@ interface Product {
 }
 
 const Product = () => {
-  const params = useParams();
+  const params = useParams<{ id: string }>();
   const navigate = useRouter();
   const [product, setProducts] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const { addToCart, isPending } = useAddToCart();
+  const dispatch = useDispatch();
 
   const fetchProductData = async () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://api.escuelajs.co/api/v1/products/${params.id}`
+        `https://mocki.io/v1/2ea6ca34-0766-4709-837d-39e2b04d39d8`
       );
-      setProducts(response.data);
+      const productId = parseInt(params.id);
+      const product = response.data.find((p: any) => p.id === productId);
+      if (!product) {
+        ErrorToast("Product not found");
+        return;
+      }
+      setProducts(product);
       //   setLoading(false);
     } catch (error) {
       console.error("Failed to fetch product data: ", error);
@@ -56,7 +65,8 @@ const Product = () => {
     }
     fetchProductData();
   }, []);
-
+  const cart = useSelector((state: RootState) => state.dataSlice.cart);
+  console.log(cart);
   return (
     <main>
       <Navbar />

@@ -54,12 +54,14 @@ const Login = () => {
       scale: 1,
       filter: "blur(0px)",
       duration: 1.7,
+      ease: "expo.inOut",
     });
     tl.to(
       imageRef.current,
       {
         clipPath: "polygon(50% 0, 100% 0, 100% 100%, 50% 100%)",
         duration: 2,
+        ease: "expo.inOut",
       },
       "-=0.2"
     );

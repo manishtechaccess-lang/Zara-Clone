@@ -4,8 +4,10 @@ import ErrorToast from "../Toast/ErrorToast";
 import SuccessToast from "../Toast/SuccessToast";
 import { setCart } from "@/libs/dataslice";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const useAddToCart = () => {
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const dispatch = useDispatch();
 
@@ -13,6 +15,7 @@ const useAddToCart = () => {
     startTransition(async () => {
       try {
         const productId = String(proId);
+        // console.log(productId);
 
         const response = await axios.post(
           "/api/cart/add-to-cart",
@@ -24,14 +27,20 @@ const useAddToCart = () => {
           ErrorToast(response.data.message);
           return;
         }
+        console.log(response.data.cart);
+        dispatch(setCart(response.data.cart));
         SuccessToast("Added to cart successfully");
-        return response.data;
+        // return response.data;
       } catch (error: any) {
-        const errorMessage =
-          error.response?.data?.message ||
-          error.message ||
-          "Failed to add to cart";
-        ErrorToast(errorMessage);
+        const message = error.response?.data?.message;
+        console.log(error);
+
+        if (message === "Unauthorized") {
+          ErrorToast("Please login to add items to your cart");
+          router.push("/auth/Login"); // ✅ correct path
+          return;
+        }
+        ErrorToast(message || "Failed to add to cart");
         console.error("Failed to add to cart: ", error);
       }
     });
